@@ -1,7 +1,6 @@
-import logo from "./logo.svg";
 import "./App.css";
+import ShuffleApp from './ShuffleApp';
 
-/** App that draws a random card and places it on a pile */
 function App() {
   return (
     <div className="App">

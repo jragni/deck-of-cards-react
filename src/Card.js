@@ -1,10 +1,21 @@
 import React from "react";
 
-function Card({ rank, suit }) {
-  //TODO: change to show card later
+/** Card
+ * 
+ * Renders image of card
+ * 
+ * Props: 
+ *  - card like { image, images, code, suit, value }
+ * 
+ * DrawnCards  -> Card
+ * 
+ */
+function Card({ card }) {
   return (
     <div className="Card">
-      {rank} : {suit}
+      <img src={card.image} alt={`Card of ${card.code}`}></img>;
     </div>
   );
 }
+
+export default Card;
