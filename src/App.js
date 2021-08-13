@@ -1,5 +1,5 @@
 import "./App.css";
-import ShuffleApp from './ShuffleApp';
+import ShuffleApp from "./ShuffleApp";
 
 function App() {
   return (

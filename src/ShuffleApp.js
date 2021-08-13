@@ -16,19 +16,23 @@ import DrawnCards from "./DrawnCards";
 function ShuffleApp() {
   const [drawnCards, setDrawnCards] = useState([]);
   const [deck, setDeck] = useState({});
-  const [isShuffling, setShuffling] = useState(true);
+  const [isShuffling, setShuffling] = useState(true); // NOTE: rename var?
 
   useEffect(function shuffleDeckWhenMounted() {
     /** gets shuffled deck from api*/
-    async function shuffle() {
-      const resp = await axios.get(
-        "http://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1"
-      );
-      setDeck(resp.data);
-      setShuffling(false);
-    }
-    shuffle();
+    shuffleDeck();
   }, []);
+
+  /** Shuffle */
+  async function shuffleDeck() {
+    setShuffling(false);
+    const resp = await axios.get(
+      "http://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1"
+    );
+    setDeck(resp.data);
+    setDrawnCards([]);
+    setShuffling(false);
+  }
 
   /** draws card from deck api and updates the drawn cards */
   async function handleDraw() {
@@ -37,16 +41,25 @@ function ShuffleApp() {
     );
     const card = resp.data.cards[0];
     if (card) setDrawnCards((drawnCards) => [...drawnCards, card]);
+    else {
+      setDrawnCards([...drawnCards]);
+    }
   }
 
   if (isShuffling) return <i>Shuffling Deck</i>;
 
   return (
     <div className="ShuffleApp">
-      {drawnCards.length === 52 
-        ? (<i> {alert('No Cards Remaining!')}</i>) 
-        : ( <button onClick={handleDraw}>Draw a card!</button>)
-      }
+      {drawnCards.length === 52 ? alert("No Cards Remaining!") : ""}
+
+      {isShuffling ? (
+        ""
+      ) : (
+        <div>
+          <button onClick={handleDraw}>Draw a card!</button>
+          <button onClick={shuffleDeck}> ShuffleDeck! </button>
+        </div>
+      )}
       <DrawnCards cards={drawnCards} />
     </div>
   );

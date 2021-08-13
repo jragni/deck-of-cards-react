@@ -1,14 +1,14 @@
 import React from "react";
 
 /** Card
- * 
+ *
  * Renders image of card
- * 
- * Props: 
+ *
+ * Props:
  *  - card like { image, images, code, suit, value }
- * 
+ *
  * DrawnCards  -> Card
- * 
+ *
  */
 function Card({ card }) {
   return (
@@ -19,3 +19,4 @@ function Card({ card }) {
 }
 
 export default Card;
+
