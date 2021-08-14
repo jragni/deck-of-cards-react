@@ -13,7 +13,7 @@ import React from "react";
 function Card({ card }) {
   return (
     <div className="Card">
-      <img src={card.image} alt={`Card of ${card.code}`}></img>;
+      <img src={card.image} alt={`Card of ${card.code}`}></img>
     </div>
   );
 }
